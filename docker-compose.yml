@@ -68,7 +68,7 @@ services:
       org.label-schema.group: "monitoring"
 
   cadvisor:
-    image: gcr.io/google-containers/cadvisor:v0.34.0
+    image: docker.io/budry/cadvisor-arm:latest
     container_name: cadvisor
     volumes:
       - /:/rootfs:ro
@@ -114,7 +114,7 @@ services:
       org.label-schema.group: "monitoring"
 
   caddy:
-    image: stefanprodan/caddy
+    image: caddy:2.3.0-alpine
     container_name: caddy
     ports:
       - "3000:3000"
