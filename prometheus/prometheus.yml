@@ -25,12 +25,12 @@ scrape_configs:
 
   - job_name: cosmos
     static_configs:
-      - targets: ['localhost:26660']
+      - targets: ["osmosis:26662"]
 
   - job_name: 'prometheus'
     scrape_interval: 10s
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['prometheus:9090']
 
 
 alerting:

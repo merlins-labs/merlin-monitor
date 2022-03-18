@@ -9,18 +9,6 @@ volumes:
     grafana_data: {}
 
 services:
-  
-  osmosis:
-    image: marcnuri/port-forward:latest
-    container_name: "osmosis"
-    ports:
-    - 26662:26660
-    environment:
-      REMOTE_HOST: 0.0.0.0
-      REMOTE_PORT: 26660
-      LOCAL_PORT: 26662
-    networks:
-      - monitor-net
 
   prometheus:
     image: prom/prometheus:v2.34.0
