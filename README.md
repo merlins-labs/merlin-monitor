@@ -12,17 +12,11 @@ Additional info: [Docker - Prometheus and Grafana](https://bogotobogo.com/DevOps
 
 ## Install
 
-### Create .env:
-```
-ADMIN_USER=admin  
-ADMIN_PASSWORD=admin
-```
-
 ### Clone this repository on your Docker host, cd into test directory and run compose up:
 
 ```
-git clone https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana.git
-cd Docker-Compose-Prometheus-and-Grafana
+git clone https://github.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker.git
+Osmosis-Grafana-Prometheus-Docker
 docker-compose up -d
 ```
 
@@ -33,12 +27,17 @@ docker-compose up -d
 
 ## Containers:
 
-* Prometheus (metrics database) `http://<host-ip>:9090`
+* Prometheus (metrics database) `http://<host-ip>:9092`
 * Prometheus-Pushgateway (push acceptor for ephemeral and batch jobs) `http://<host-ip>:9091`
-* AlertManager (alerts management) `http://<host-ip>:9093`
 * Grafana (visualize metrics) `http://<host-ip>:3000`
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
+
+## Uninstall / Deactivate
+
+```
+docker-compose down --volumes
+```
 
 ## Setup Grafana
 
