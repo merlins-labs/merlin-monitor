@@ -106,28 +106,13 @@ Grafana is preconfigured with dashboards and Prometheus as the default data sour
 
 ***Osmosis Dashboard***
 
+The Osmosis Dashboard shows key metrics for monitoring the chain state as well as machine resource usage:
+
 ![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
-The Docker Host Dashboard shows key metrics for monitoring the resource usage of your server:
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_2.png)
 
-* Server uptime, CPU idle percent, number of CPU cores, available memory, swap and storage
-* System load average graph, running and blocked by IO processes graph, interrupts graph
-* CPU usage graph by mode (guest, idle, iowait, irq, nice, softirq, steal, system, user)
-* Memory usage graph by distribution (used, free, buffers, cached)
-* IO usage graph (read Bps, read Bps and IO time)
-* Network usage graph by device (inbound Bps, Outbound Bps)
-* Swap usage and activity graphs
-
-For storage and particularly Free Storage graph, you have to specify the fstype in grafana graph request.
-You can find it in `grafana/dashboards/docker_host.json`, at line 480 :
-
-      "expr": "sum(node_filesystem_free_bytes{fstype=\"btrfs\"})",
-
-I work on BTRFS, so i need to change `aufs` to `btrfs`.
-
-You can find right value for your system in Prometheus `http://<host-ip>:9090` launching this request :
-
-      node_filesystem_free_bytes
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_3.png)
 
 
 ## WIP
