@@ -9,7 +9,7 @@ volumes:
     grafana_data: {}
 
 services:
-  
+
   osmosis:
     image: marcnuri/port-forward:latest
     container_name: "osmosis"
@@ -79,22 +79,22 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  # cadvisor:
-    # image: docker.io/budry/cadvisor-arm:latest
-    # container_name: cadvisor
-    # volumes:
-      # - /:/rootfs:ro
-      # - /var/run:/var/run:rw
-      # - /sys:/sys:ro
-      # - /var/lib/docker:/var/lib/docker:ro
-      # - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
-    # restart: unless-stopped
-    # ports:
-      # - 8001:8080
-    # networks:
-      # - monitor-net
-    # labels:
-      # org.label-schema.group: "monitoring"
+  cadvisor:
+    image: docker.io/budry/cadvisor-arm:latest
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    restart: unless-stopped
+    ports:
+      - 8001:8001
+    networks:
+      - monitor-net
+    labels:
+      org.label-schema.group: "monitoring"
 
   grafana:
     image: grafana/grafana:latest
