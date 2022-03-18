@@ -23,6 +23,10 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
 
+  - job_name: cosmos
+    static_configs:
+      - targets: ['localhost:26660']
+
   - job_name: 'prometheus'
     scrape_interval: 10s
     static_configs:
