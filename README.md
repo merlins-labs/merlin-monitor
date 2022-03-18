@@ -36,7 +36,7 @@ docker-compose up -d
 ## Uninstall / Deactivate
 
 ```
-docker-compose down --volumes
+docker-compose down
 ```
 
 ## Setup Grafana

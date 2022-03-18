@@ -16,7 +16,7 @@ services:
     ports:
     - 26662:26660
     environment:
-      REMOTE_HOST: 0.0.0.0
+      REMOTE_HOST: $HOST_IP
       REMOTE_PORT: 26660
       LOCAL_PORT: 26662
     networks:
@@ -33,7 +33,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/etc/prometheus/console_libraries'
       - '--web.console.templates=/etc/prometheus/consoles'
-      - '--storage.tsdb.retention.time=200h'
+      - '--storage.tsdb.retention.time=337h'
       - '--web.enable-lifecycle'
     restart: unless-stopped
     ports:
@@ -79,22 +79,22 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  cadvisor:
-    image: docker.io/budry/cadvisor-arm:latest
-    container_name: cadvisor
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker:/var/lib/docker:ro
-      - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
-    restart: unless-stopped
-    ports:
-      - 8001:8080
-    networks:
-      - monitor-net
-    labels:
-      org.label-schema.group: "monitoring"
+  # cadvisor:
+    # image: docker.io/budry/cadvisor-arm:latest
+    # container_name: cadvisor
+    # volumes:
+      # - /:/rootfs:ro
+      # - /var/run:/var/run:rw
+      # - /sys:/sys:ro
+      # - /var/lib/docker:/var/lib/docker:ro
+      # - /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
+    # restart: unless-stopped
+    # ports:
+      # - 8001:8080
+    # networks:
+      # - monitor-net
+    # labels:
+      # org.label-schema.group: "monitoring"
 
   grafana:
     image: grafana/grafana:latest

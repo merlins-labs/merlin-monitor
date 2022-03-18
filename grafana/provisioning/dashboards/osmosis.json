@@ -24,7 +24,7 @@
   "gnetId": 11036,
   "graphTooltip": 1,
   "id": 1,
-  "iteration": 1647551543606,
+  "iteration": 1647635145880,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -69,7 +69,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -125,7 +125,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
           "expr": "tendermint_consensus_height",
@@ -144,7 +144,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -196,7 +196,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
           "expr": "sum(increase(tendermint_consensus_num_txs[24h]))",
@@ -215,7 +215,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -267,7 +267,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_validators_power",
@@ -285,7 +285,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -343,7 +343,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_mempool_size",
@@ -361,7 +361,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -427,7 +427,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "3600/delta(tendermint_consensus_height[1h])",
@@ -452,7 +452,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "decimals": 0,
       "fieldConfig": {
@@ -504,7 +504,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_validators",
@@ -518,7 +518,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_missing_validators",
@@ -531,7 +531,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "expr": "tendermint_consensus_byzantine_validators{chain_id=\"$chain_id\", instance=\"$instance\"}",
           "format": "time_series",
@@ -576,51 +576,90 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "fillGradient": 0,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
         "y": 4
       },
-      "hiddenSeries": false,
       "id": 80,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
-      "percentage": false,
       "pluginVersion": "8.4.4",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_p2p_peers",
@@ -629,83 +668,94 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Peers Connected",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:548",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:549",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "fill": 1,
-      "fillGradient": 0,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "stepAfter",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 12,
         "x": 0,
         "y": 11
       },
-      "hiddenSeries": false,
       "id": 82,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
-      "percentage": false,
       "pluginVersion": "8.4.4",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_missing_validators",
@@ -714,37 +764,8 @@
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Num Validators Miss Sign",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:1265",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:1266",
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "timeseries"
     },
     {
       "aliasColors": {},
@@ -753,7 +774,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -804,7 +825,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_num_txs",
@@ -858,7 +879,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -909,7 +930,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_validators_power",
@@ -923,7 +944,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_missing_validators_power",
@@ -936,7 +957,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "expr": "tendermint_consensus_byzantine_validators_power{chain_id=\"$chain_id\", instance=\"$instance\"}",
           "format": "time_series",
@@ -990,7 +1011,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1040,7 +1061,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "tendermint_consensus_block_size_bytes",
@@ -1092,6 +1113,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "short"
@@ -1137,7 +1162,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "increase(ibc_transfer_send[5m])",
@@ -1148,7 +1173,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "IBC Channel Sends",
+      "title": "IBC Channel Sends (5 min avg)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1183,6 +1208,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1222,7 +1251,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "increase(ibc_transfer_receive[5m])",
@@ -1233,7 +1262,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "IBC Channel Recieves",
+      "title": "IBC Channel Recieves (5 min avg)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1271,7 +1300,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "$DS"
+        "uid": "${DS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1322,7 +1351,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "rate(tendermint_mempool_failed_txs[5m])",
@@ -1336,7 +1365,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Failed Transaction Rate",
+      "title": "Failed Transaction Rate (5 min average)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1371,6 +1400,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1410,7 +1443,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "3600/delta(tendermint_consensus_height[1h])",
@@ -1469,6 +1502,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "unit": "percent"
@@ -1484,7 +1521,7 @@
         "y": 39
       },
       "hiddenSeries": false,
-      "id": 71,
+      "id": 73,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -1514,18 +1551,18 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{job=\"node\",mode=\"idle\"}[1m])) * 100)",
+          "expr": "(1-(node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes))*100",
           "interval": "",
-          "legendFormat": "CPU Usage",
+          "legendFormat": "RAM Usage",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "CPU Usage",
+      "title": "Physical Memory Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1539,7 +1576,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:264",
+          "$$hashKey": "object:207",
           "format": "percent",
           "logBase": 1,
           "max": "100",
@@ -1547,7 +1584,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:265",
+          "$$hashKey": "object:208",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -1558,6 +1595,10 @@
       }
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1603,7 +1644,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
           "expr": "sum(increase(node_network_transmit_bytes_total[1d]))",
@@ -1618,6 +1659,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1663,7 +1708,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
           "expr": "sum(increase(node_network_receive_bytes_total[1d]))",
@@ -1678,6 +1723,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1723,7 +1772,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "node_memory_MemTotal_bytes{}",
@@ -1736,6 +1785,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1781,7 +1834,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "node_memory_SwapTotal_bytes{}",
@@ -1794,6 +1847,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1839,21 +1896,25 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
-          "expr": "sum(increase(node_network_transmit_bytes_total[30d]))",
+          "expr": "sum(increase(node_network_transmit_bytes_total[2w]))",
           "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "timeFrom": "30d",
+      "timeFrom": "2w",
       "title": "Data Sent",
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1899,21 +1960,25 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": false,
-          "expr": "sum(increase(node_network_receive_bytes_total[30d]))",
+          "expr": "sum(increase(node_network_receive_bytes_total[2w]))",
           "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         }
       ],
-      "timeFrom": "30d",
+      "timeFrom": "2w",
       "title": "Data Received",
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1959,7 +2024,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "node_memory_MemAvailable_bytes",
@@ -1972,6 +2037,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2017,7 +2086,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "${DS}"
           },
           "exemplar": true,
           "expr": "node_memory_SwapFree_bytes",
@@ -2034,22 +2103,16 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "fieldConfig": {
-        "defaults": {
-          "unit": "percent"
-        },
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 12,
         "x": 12,
         "y": 45
       },
       "hiddenSeries": false,
-      "id": 75,
+      "id": 98,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2079,18 +2142,18 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(1-(node_memory_SwapFree_bytes/node_memory_SwapTotal_bytes))*100",
+          "expr": "avg without (mode,cpu) (\n  1 - rate(node_cpu_seconds_total{mode=\"idle\"}[1m])\n)",
           "interval": "",
-          "legendFormat": "Swap Usage",
+          "legendFormat": "CPU Usage",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Swap Usage",
+      "title": "CPU Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2104,15 +2167,15 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:150",
-          "format": "percent",
+          "$$hashKey": "object:102",
+          "format": "percentunit",
           "logBase": 1,
-          "max": "100",
+          "max": "1",
           "min": "0",
           "show": true
         },
         {
-          "$$hashKey": "object:151",
+          "$$hashKey": "object:103",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -2142,7 +2205,7 @@
         "y": 47
       },
       "hiddenSeries": false,
-      "id": 73,
+      "id": 94,
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2172,18 +2235,18 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "my_unique_uid"
+            "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
-          "expr": "(1-(node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes))*100",
+          "expr": "(1-(node_memory_SwapFree_bytes/node_memory_SwapTotal_bytes))*100",
           "interval": "",
-          "legendFormat": "RAM Usage",
+          "legendFormat": "Swap Usage",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Physical Memory Usage",
+      "title": "Swap Usage",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2197,7 +2260,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:207",
+          "$$hashKey": "object:553",
           "format": "percent",
           "logBase": 1,
           "max": "100",
@@ -2205,10 +2268,12 @@
           "show": true
         },
         {
-          "$$hashKey": "object:208",
+          "$$hashKey": "object:554",
           "format": "short",
           "logBase": 1,
-          "show": true
+          "max": "100",
+          "min": "0",
+          "show": false
         }
       ],
       "yaxis": {
@@ -2229,8 +2294,8 @@
       {
         "current": {
           "selected": false,
-          "text": "OsmosisPrometheus",
-          "value": "OsmosisPrometheus"
+          "text": "Prometheus",
+          "value": "Prometheus"
         },
         "hide": 0,
         "includeAll": false,
@@ -2279,6 +2344,6 @@
   "timezone": "",
   "title": "Osmosis Dashboard",
   "uid": "UJyurCTWz",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }
