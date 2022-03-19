@@ -19,11 +19,7 @@ sudo apt install docker.io -y
 ```
 * Docker Compose >= 1.11
 ```
-mkdir -p ~/.docker/cli-plugins/
-curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-chmod +x ~/.docker/cli-plugins/docker-compose
-sudo chown $USER /var/run/docker.sock
-docker compose version
+sudo apt install docker-compose -y
 ```
 * Osmosis full node running
   - See https://get.osmosis.zone or https://docs.osmosis.zone/developing/cli/install.html to install the Osmosis binary
