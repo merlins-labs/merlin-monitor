@@ -48,7 +48,7 @@ Clone this repository on your Docker host, cd into test directory and run compos
 
 ```
 git clone https://github.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker.git
-Osmosis-Grafana-Prometheus-Docker
+cd Osmosis-Grafana-Prometheus-Docker
 docker-compose up -d
 ```
 
@@ -60,7 +60,7 @@ This command will create the following containers
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
 
-Once you have run docker-compose (and Osmosis has caught up to the head of the chain), simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, then select the `Osmosis Dashboard` from the home screen. The dashboard can also be found at `http://<host-ip>:3000/d/UJyurCTWz/osmosis-dashboard`
+Once you have run docker-compose (**and Osmosis has caught up to the head of the chain**), simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, and go to the dashboards tab (the icon that looks like four squares). Select browse and then select the `Osmosis Dashboard` from the home screen. The dashboard can also be reached directly at `http://<host-ip>:3000/d/UJyurCTWz/osmosis-dashboard`
 
 ## Uninstall / Deactivate
 
