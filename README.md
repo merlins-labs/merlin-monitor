@@ -3,10 +3,9 @@ Osmosis Dashboard
 
 ![OsmosisDashboard1](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
-An monitoring solution for Osmosis full nodes with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
+A monitoring solution for Osmosis full nodes with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
 
-Additional info: [Docker - Prometheus and Grafana](https://bogotobogo.com/DevOps/Docker/Docker_Prometheus_Grafana.php)
 
 ## Guide
 
