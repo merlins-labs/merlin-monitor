@@ -1,18 +1,50 @@
-Prometheus-Grafana
+Osmosis Dashboard
 ========
 
-A monitoring solution for Docker hosts and containers with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
-[NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).  
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
-This is a forked repository. So, you may want to visit the original repo at [stefanprodan
-/
-dockprom](https://github.com/stefanprodan/dockprom)
+An monitoring solution for Osmosis full nodes with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
+[NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
 
 Additional info: [Docker - Prometheus and Grafana](https://bogotobogo.com/DevOps/Docker/Docker_Prometheus_Grafana.php)
 
-## Install
+## Guide
 
-### Clone this repository on your Docker host, cd into test directory and run compose up:
+### Prerequisites
+
+* Docker Engine >= 1.13
+```
+sudo apt-get remove docker docker-engine docker.io
+sudo apt-get update
+sudo apt install docker.io -y
+```
+* Docker Compose >= 1.11
+```
+mkdir -p ~/.docker/cli-plugins/
+curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-compose
+sudo chown $USER /var/run/docker.sock
+docker compose version
+```
+* Osmosis full node running
+  - See https://get.osmosis.zone or https://docs.osmosis.zone/developing/cli/install.html to install the Osmosis binary
+  - Set `prometheus = true` under instrumentation in the config.toml
+  - Set `enable = true` and `prometheus-retention-time = 1` under telemetry in the app.toml
+* Ensure the following ports are not in use
+  - 3000
+  - 9100
+  - 9092
+  - 8001
+
+### Install
+
+Set your public IP as an environment variable
+
+```
+export HOST_IP=$(dig +short txt ch whoami.cloudflare @1.0.0.1)
+```
+
+Clone this repository on your Docker host, cd into test directory and run compose up
 
 ```
 git clone https://github.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker.git
@@ -20,23 +52,28 @@ Osmosis-Grafana-Prometheus-Docker
 docker-compose up -d
 ```
 
-## Prerequisites:
+This command will create the following containers
 
-* Docker Engine >= 1.13
-* Docker Compose >= 1.11
-
-## Containers:
-
+* Grafana (visualize metrics) `http://<host-ip>:3000`
 * Prometheus (metrics database) `http://<host-ip>:9092`
 * Prometheus-Pushgateway (push acceptor for ephemeral and batch jobs) `http://<host-ip>:9091`
-* Grafana (visualize metrics) `http://<host-ip>:3000`
 * NodeExporter (host metrics collector)
 * cAdvisor (containers metrics collector)
 
+Once you have run docker-compose, simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, then select the `Osmosis Dashboard` from the home screen. The dashboard can also be found at `http://<host-ip>:3000/d/UJyurCTWz/osmosis-dashboard`
+
 ## Uninstall / Deactivate
+
+To shut down all of the above docker containers but retain the data
 
 ```
 docker-compose down
+```
+
+To shut down and delete all metrics collected
+
+```
+docker-compose down --volumes
 ```
 
 ## Setup Grafana
@@ -67,63 +104,18 @@ Grafana is preconfigured with dashboards and Prometheus as the default data sour
 * Url: http://prometheus:9090
 * Access: proxy
 
-***Docker Host Dashboard***
+***Osmosis Dashboard***
 
-![Host](https://raw.githubusercontent.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana/master/screens/Grafana_Docker_Host.png)
+The Osmosis Dashboard shows key metrics for monitoring the chain state as well as machine resource usage:
 
-The Docker Host Dashboard shows key metrics for monitoring the resource usage of your server:
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
-* Server uptime, CPU idle percent, number of CPU cores, available memory, swap and storage
-* System load average graph, running and blocked by IO processes graph, interrupts graph
-* CPU usage graph by mode (guest, idle, iowait, irq, nice, softirq, steal, system, user)
-* Memory usage graph by distribution (used, free, buffers, cached)
-* IO usage graph (read Bps, read Bps and IO time)
-* Network usage graph by device (inbound Bps, Outbound Bps)
-* Swap usage and activity graphs
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_2.png)
 
-For storage and particularly Free Storage graph, you have to specify the fstype in grafana graph request.
-You can find it in `grafana/dashboards/docker_host.json`, at line 480 :
+![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_3.png)
 
-      "expr": "sum(node_filesystem_free_bytes{fstype=\"btrfs\"})",
 
-I work on BTRFS, so i need to change `aufs` to `btrfs`.
-
-You can find right value for your system in Prometheus `http://<host-ip>:9090` launching this request :
-
-      node_filesystem_free_bytes
-
-***Docker Containers Dashboard***
-
-![Containers](https://raw.githubusercontent.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana/master/screens/Grafana_Docker_Containers.png)
-
-The Docker Containers Dashboard shows key metrics for monitoring running containers:
-
-* Total containers CPU load, memory and storage usage
-* Running containers graph, system load graph, IO usage graph
-* Container CPU usage graph
-* Container memory usage graph
-* Container cached memory usage graph
-* Container network inbound usage graph
-* Container network outbound usage graph
-
-Note that this dashboard doesn't show the containers that are part of the monitoring stack.
-
-***Monitor Services Dashboard***
-
-![Monitor Services](https://raw.githubusercontent.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana/master/screens/Grafana_Prometheus.png)
-![Monitor Services](https://raw.githubusercontent.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana/master/screens/Grafana_Prometheus2.png)
-![Monitor Services](https://raw.githubusercontent.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana/master/screens/Grafana_Prometheus3.png)
-
-The Monitor Services Dashboard shows key metrics for monitoring the containers that make up the monitoring stack:
-
-* Prometheus container uptime, monitoring stack total memory usage, Prometheus local storage memory chunks and series
-* Container CPU usage graph
-* Container memory usage graph
-* Prometheus chunks to persist and persistence urgency graphs
-* Prometheus chunks ops and checkpoint duration graphs
-* Prometheus samples ingested rate, target scrapes and scrape duration graphs
-* Prometheus HTTP requests graph
-* Prometheus alerts graph
+## WIP
 
 ## Define alerts
 
