@@ -1,7 +1,7 @@
 Osmosis Dashboard
 ========
 
-![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
+![OsmosisDashboard1](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
 An monitoring solution for Osmosis full nodes with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
@@ -108,11 +108,11 @@ Grafana is preconfigured with dashboards and Prometheus as the default data sour
 
 The Osmosis Dashboard shows key metrics for monitoring the chain state as well as machine resource usage:
 
-![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
+![OsmosisDashboard1](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
 
-![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_2.png)
+![OsmosisDashboard2](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_2.png)
 
-![Host](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_3.png)
+![OsmosisDashboard3](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_3.png)
 
 
 ## WIP
