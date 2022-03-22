@@ -7,69 +7,78 @@ A monitoring solution for Osmosis full nodes with [Prometheus](https://prometheu
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
 
 
-## Guide
+## Guide 
 
 ### Prerequisites
 
-* Docker Engine >= 1.13
+1. Install Docker Engine `>= 1.13`
 ```
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get update
 sudo apt install docker.io -y
 ```
-* Docker Compose >= 1.11
+
+2. Install Docker Compose `>= 1.11`
 ```
 sudo apt install docker-compose -y
 ```
-* Osmosis full node running
-  - See https://get.osmosis.zone or https://docs.osmosis.zone/developing/cli/install.html to install the Osmosis binary
+
+3. Run an Osmosis full node. See https://get.osmosis.zone or https://docs.osmosis.zone/developing/cli/install.html to install the Osmosis binary
+
+4. Enable the Prometheus metrics
   - Set `prometheus = true` under instrumentation in the config.toml
   - Set `enable = true` and `prometheus-retention-time = 1` under telemetry in the app.toml
-* Ensure the following ports are not in use
-  - 3000
-  - 9100
-  - 9092
-  - 8001
 
-### Install
+5. Ensure the following ports are not in use
+  - `3000`
+  - `9100`
+  - `9092`
+  - `8001`
 
-Set your public IP as an environment variable
+### Run
 
-```
+1. Export your public IP to an environment variable
+
+```bash
 export HOST_IP=$(dig +short txt ch whoami.cloudflare @1.0.0.1)
 ```
 
-Clone this repository on your Docker host, cd into test directory and run docker-compose up
+2. Clone this repository on your host, cd into the repository directory
 
-```
+```bash
 git clone https://github.com/osmosis-labs/osmosis-monitor.git
-cd Osmosis-Grafana-Prometheus-Docker
+```
+
+3. Run the containers with `docker-compose`:
+
+```bash
+cd osmosis-monitor
 docker-compose up -d
 ```
 
-This command will create the following containers
+The command will create the following containers:
 
-* Grafana (visualize metrics) `http://<host-ip>:3000`
-* Prometheus (metrics database) `http://<host-ip>:9092`
-* Prometheus-Pushgateway (push acceptor for ephemeral and batch jobs) `http://<host-ip>:9091`
-* NodeExporter (host metrics collector)
-* cAdvisor (containers metrics collector)
+* `Grafana` (visualize metrics) `http://<host-ip>:3000`
+* `Prometheus` (metrics database) `http://<host-ip>:9092`
+* `Prometheus-Pushgateway` (push acceptor for ephemeral and batch jobs) `http://<host-ip>:9091`
+* `NodeExporter` (host metrics collector)
+* `cAdvisor` (containers metrics collector)
 
-Once you have run docker-compose (**and Osmosis has caught up to the head of the chain**), simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, and go to the dashboards tab (the icon that looks like four squares). Select browse and then select the `Osmosis Dashboard`. 
+Once you have run `docker-compose` (**and Osmosis has caught up to the head of the chain**), simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, and go to the dashboards tab (the icon that looks like four squares). Select browse and then select the `Osmosis Dashboard`. 
 
 The dashboard can also be reached directly at `http://<host-ip>:3000/d/UJyurCTWz/osmosis-dashboard`
 
-## Uninstall / Deactivate
+### Shutdown
 
 To shut down all of the above docker containers but retain the data
 
-```
+```bash
 docker-compose down
 ```
 
 To shut down and delete all metrics collected
 
-```
+```bash
 docker-compose down --volumes
 ```
 
