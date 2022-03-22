@@ -43,16 +43,20 @@ sudo apt install docker-compose -y
 export HOST_IP=$(dig +short txt ch whoami.cloudflare @1.0.0.1)
 ```
 
-2. Clone this repository on your host, cd into the repository directory
+2. Clone this repository on your host
 
 ```bash
 git clone https://github.com/osmosis-labs/osmosis-monitor.git
+cd osmosis-monitor
 ```
 
-3. Run the containers with `docker-compose`:
+3. (optional) Define additional alerting rules. Edit the `prometheus/alert.rules` to configure additional rules. See [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) for more details.
+
+4. (optional) Configure a `receiver` for the alerting notifications. Edit the `alertmanager/config.yaml` to configure additional rules. See [Alertmanager documentation](https://prometheus.io/docs/alerting/latest/configuration/#receiver) for more details.
+
+5. Run the containers via `docker-compose`:
 
 ```bash
-cd osmosis-monitor
 docker-compose up -d
 ```
 
