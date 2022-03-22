@@ -1,7 +1,7 @@
 Osmosis Dashboard
 ========
 
-![OsmosisDashboard1](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
+![OsmosisDashboard1](https://raw.githubusercontent.com/osmosis-labs/osmosis-monitor/master/screens/Osmosis_Dashboard_1.png)
 
 A monitoring solution for Osmosis full nodes with [Prometheus](https://prometheus.io/), [Grafana](http://grafana.org/), [cAdvisor](https://github.com/google/cadvisor),
 [NodeExporter](https://github.com/prometheus/node_exporter) and alerting with [AlertManager](https://github.com/prometheus/alertmanager).
@@ -42,7 +42,7 @@ export HOST_IP=$(dig +short txt ch whoami.cloudflare @1.0.0.1)
 Clone this repository on your Docker host, cd into test directory and run docker-compose up
 
 ```
-git clone https://github.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker.git
+git clone https://github.com/osmosis-labs/osmosis-monitor.git
 cd Osmosis-Grafana-Prometheus-Docker
 docker-compose up -d
 ```
@@ -77,8 +77,8 @@ docker-compose down --volumes
 
 The Osmosis Dashboard shows key metrics for monitoring the chain state as well as machine resource usage:
 
-![OsmosisDashboard1](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_1.png)
+![OsmosisDashboard1](https://raw.githubusercontent.com/osmosis-labs/osmosis-monitor/master/screens/Osmosis_Dashboard_1.png)
 
-![OsmosisDashboard2](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_2.png)
+![OsmosisDashboard2](https://raw.githubusercontent.com/osmosis-labs/osmosis-monitor/master/screens/Osmosis_Dashboard_2.png)
 
-![OsmosisDashboard3](https://raw.githubusercontent.com/czarcas7ic/Osmosis-Grafana-Prometheus-Docker/master/screens/Osmosis_Dashboard_3.png)
+![OsmosisDashboard3](https://raw.githubusercontent.com/osmosis-labs/osmosis-monitor/master/screens/Osmosis_Dashboard_3.png)
