@@ -50,9 +50,9 @@ git clone https://github.com/osmosis-labs/osmosis-monitor.git
 cd osmosis-monitor
 ```
 
-3. (optional) Define additional alerting rules. Edit the `prometheus/alert.rules` to configure additional rules. See [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) for more details.
+3. *(optional)* Define additional alerting rules. Edit the `prometheus/alert.rules` to configure additional rules. See [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) for more details.
 
-4. (optional) Configure a `receiver` for the alerting notifications. Edit the `alertmanager/config.yaml` to configure additional rules. See [Alertmanager documentation](https://prometheus.io/docs/alerting/latest/configuration/#receiver) for more details.
+4. *(optional)* Configure a `receiver` for the alerting notifications. Edit the `alertmanager/config.yaml` to configure additional rules. See [Alertmanager documentation](https://prometheus.io/docs/alerting/latest/configuration/#receiver) for more details.
 
 5. Run the containers via `docker-compose`:
 
@@ -68,7 +68,15 @@ The command will create the following containers:
 * `NodeExporter` (host metrics collector)
 * `cAdvisor` (containers metrics collector)
 
-Once you have run `docker-compose` (**and Osmosis has caught up to the head of the chain**), simply go to `http://<host-ip>:3000`, login with `admin` and `admin` as the username and password, set your new password, and go to the dashboards tab (the icon that looks like four squares). Select browse and then select the `Osmosis Dashboard`. 
+### Usage
+
+Once you have run `docker-compose` (**and Osmosis has caught up to the head of the chain**):
+
+1. Go to `http://<host-ip>:3000`
+
+2. Login with `admin` and `admin` as the username and password and set your new password
+
+3. Go to the dashboards tab (the icon that looks like four squares). Select browse and then select the `Osmosis Dashboard`. 
 
 The dashboard can also be reached directly at `http://<host-ip>:3000/d/UJyurCTWz/osmosis-dashboard`
 
