@@ -23,7 +23,7 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8001']
 
-  - job_name: cosmos
+  - job_name: 'osmosis'
     scrape_interval: 6s
     static_configs:
       - targets: ["osmosis:26662"]
@@ -40,13 +40,3 @@ alerting:
     static_configs:
     - targets:
       - 'alertmanager:9093'
-
-#  - job_name: 'nginx'
-#    scrape_interval: 10s
-#    static_configs:
-#      - targets: ['nginxexporter:9113']
-
-#  - job_name: 'aspnetcore'
-#    scrape_interval: 10s
-#    static_configs:
-#      - targets: ['eventlog-proxy:5000', 'eventlog:5000']

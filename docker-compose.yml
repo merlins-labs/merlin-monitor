@@ -1,7 +1,7 @@
 version: '2.1'
 
 networks:
-  monitor-net:
+  osmosis-monitoring:
     driver: bridge
 
 volumes:
@@ -20,7 +20,7 @@ services:
       REMOTE_PORT: 26660
       LOCAL_PORT: 26662
     networks:
-      - monitor-net
+      - osmosis-monitoring
 
   prometheus:
     image: prom/prometheus:v2.34.0
@@ -39,7 +39,7 @@ services:
     ports:
       - 9092:9090
     networks:
-      - monitor-net
+      - osmosis-monitoring
     labels:
       org.label-schema.group: "monitoring"
 
@@ -55,7 +55,7 @@ services:
     ports:
       - 9093:9093
     networks:
-      - monitor-net
+      - osmosis-monitoring
     labels:
       org.label-schema.group: "monitoring"
 
@@ -75,7 +75,7 @@ services:
     ports:
       - 9100:9100
     networks:
-      - monitor-net
+      - osmosis-monitoring
     labels:
       org.label-schema.group: "monitoring"
 
@@ -92,7 +92,7 @@ services:
     ports:
       - 8001:8001
     networks:
-      - monitor-net
+      - osmosis-monitoring
     labels:
       org.label-schema.group: "monitoring"
 
@@ -110,6 +110,6 @@ services:
     ports:
       - 3000:3000
     networks:
-      - monitor-net
+      - osmosis-monitoring
     labels:
       org.label-schema.group: "monitoring"
